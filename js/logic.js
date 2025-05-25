@@ -1,11 +1,13 @@
-let number1 = [];
+let number1 = [0];
 let number2 = [];
 let currentOperator = null;
+let shouldReplace = true;
 
 function reset() {
-  number1 = [];
+  number1 = [0];
   number2 = [];
   currentOperator = null;
+  shouldReplace = true;
 
   const display = document.querySelector("#display");
   display.textContent = 0;
@@ -17,7 +19,12 @@ function storeNumber(number) {
       return;
     }
 
-    number1.push(number);
+    if (shouldReplace) {
+      number1[0] = number;
+      shouldReplace = false;
+    } else {
+      number1.push(number);
+    }
     return number1;
   }
   
@@ -76,5 +83,6 @@ function operate() {
   
   // Add the result to the array
   number1.push(result);
+  shouldReplace = true;
 }
 
