@@ -28,10 +28,8 @@ function createNumberPad() {
   const utilityRow = document.createElement("div");
   utilityRow.classList.add("row");
   const clearButton = createButton("AC", () => reset());
-  const signToggleButton = createButton("+/-", () => console.log("Toggle"));
-  const percentButton = createButton("%", () => console.log("Percent"));
+  const percentButton = createButton("DEL", () => deleteNumber());
   utilityRow.appendChild(clearButton);
-  utilityRow.appendChild(signToggleButton);
   utilityRow.appendChild(percentButton);
   numberPad.appendChild(utilityRow);
 

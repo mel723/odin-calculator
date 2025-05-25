@@ -13,6 +13,23 @@ function reset() {
   display.textContent = 0;
 }
 
+function deleteNumber() {
+  const display = document.querySelector("#display");
+  if (currentOperator === null) {
+    if (number1.length > 0) {
+      number1.pop();
+      display.textContent = number1.length > 0 ? number1.join("") : 0;
+    }
+
+    return;
+  }
+  
+  if (number2.length > 0) {
+    number2.pop();
+    display.textContent = number2.length > 0 ? number2.join("") : 0;
+  }
+}
+
 function storeNumber(number) {
   if (currentOperator === null) {
     if (number === "." && number1.includes(".")) {
