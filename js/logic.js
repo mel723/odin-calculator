@@ -2,6 +2,15 @@ let number1 = [];
 let number2 = [];
 let currentOperator = null;
 
+function reset() {
+  number1 = [];
+  number2 = [];
+  currentOperator = null;
+
+  const display = document.querySelector("#display");
+  display.textContent = 0;
+}
+
 function storeNumber(number) {
   if (currentOperator === null) {
     if (number === "." && number1.includes(".")) {

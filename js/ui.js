@@ -27,7 +27,7 @@ function createNumberPad() {
   // Utility keys
   const utilityRow = document.createElement("div");
   utilityRow.classList.add("row");
-  const clearButton = createButton("AC", () => console.log("Clear"));
+  const clearButton = createButton("AC", () => reset());
   const signToggleButton = createButton("+/-", () => console.log("Toggle"));
   const percentButton = createButton("%", () => console.log("Percent"));
   utilityRow.appendChild(clearButton);

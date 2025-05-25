@@ -2,7 +2,6 @@ createNumberPad();
 createOperatorContainer();
 
 // TODOS:
-// - Add clear button
 // - Round answers with long decimals
 // - Handle divide by 0
 // - Clear result and set new digit instead
