@@ -1,30 +1,50 @@
-let numbers = [];
-let operator = "";
-let result;
+let number1 = [];
+let number2 = [];
+let operator = null;
 
-const display = document.querySelector("#number-display");
-const numberPad = document.querySelector(".number-pad");
-
-let number = 0;
-
-for (let i = 0; i < 4; i++) {
-  const row = document.createElement("div");
-  row.classList.add("row");
-
-  for (let j = 0; j < 3; j++) {
-    if (number > 9) {
-      break;
+function storeNumber(number) {
+  if (operator === null) {
+    if (number === "." && number1.includes(".")) {
+      return;
     }
 
-    const button = document.createElement("button");
-    button.textContent = number;
-    button.addEventListener("click", (e) => {
-      numbers.push(Number(e.target.textContent));
-      display.textContent = e.target.textContent;
-    });
-    row.appendChild(button);
-    number++;
+    number1.push(number);
+    return number1;
   }
+
+  if (number === "." && number2.includes(".")) {
+    return;
+  }
+
+  number2.push(number);
+  return number2
+}
+
+function handleNumberButtonClick(number) {
+  const displayText = storeNumber(number);
+
+  const display = document.querySelector("#number-display");
+  display.textContent = displayText.join("");
+}
+
+function createNumberButton(number) {
+  const button = document.createElement("button");
+  button.textContent = number;
+  button.addEventListener("click", () => {
+    handleNumberButtonClick(number)
+  });
+  return button;
+}
+
+function createNumberPadRow(numbers) {
+  const numberPad = document.querySelector(".number-pad");
+  const row = document.createElement("div");
+  row.classList.add("row");
+  
+  numbers.forEach((number) => {
+    const button = createNumberButton(number);
+    row.appendChild(button);
+  });
 
   numberPad.appendChild(row);
 }
@@ -33,43 +53,48 @@ function setOperator(character) {
   operator = character;
 }
 
-function add(a, b) {
-  return a + b;
-}
-
-function subtract(a, b) {
-  return a - b;
-}
-
-function multiply(a, b) {
-  return a * b;
-}
-
-function divide(a, b) {
-  return a / b;
-}
-
 function operate() {
-  const num1 = numbers[0];
-  const num2 = numbers[1];
+  if (number1.length === 0 || number2.length === 0 || operator === null) {
+    return;
+  }
 
+  const num1 = parseFloat(number1.join(""));
+  const num2 = parseFloat(number2.join(""));
+  
   switch (operator) {
     case "+":
-      result = add(num1, num2);
+      result = num1 + num2;
       break;
     case "-":
-      result = subtract(num1, num2);
+      result = num1 - num2;
       break;
     case "*":
-      result = multiply(num1, num2);
+      result = num1 * num2;
       break;
     case "/":
-      result = divide(num1, num2);
+      result = num1 / num2;
       break;
   }
-  
-  numbers.splice(0, numbers.length);
-  numbers.push(result);
 
+  // Clear number arrays
+  number1.splice(0, number1.length);
+  number2.splice(0, number2.length);
+  operator = null;
+  
+  // Display the result
+  const display = document.querySelector("#number-display");
   display.textContent = result;
+  
+  // Add the result to the array
+  number1.push(result);
 }
+
+function createNumberPad() {
+  createNumberPadRow([7, 8, 9]);
+  createNumberPadRow([4, 5, 6]);
+  createNumberPadRow([1, 2, 3]);
+  createNumberPadRow([0, "."])
+}
+
+createNumberPad();
+
