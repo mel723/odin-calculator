@@ -59,6 +59,22 @@ function storeNumber(number) {
 }
 
 function setOperator(character) {
+  // No operator set yet
+  if (currentOperator === null) {
+    currentOperator = character;
+    return;
+  }
+  
+  // Operator has been set, but second number has not
+  // Replace the existing operator
+  if (number2.length === 0) {
+    currentOperator = character;
+    return;
+  }
+  
+  // Operator and numbers have been set
+  // Perform the calculation then set the new operator
+  operate();
   currentOperator = character;
 }
 
