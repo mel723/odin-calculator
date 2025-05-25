@@ -1,3 +1,5 @@
+const OPERATORS = ["/", "*", "-", "+"];
+
 // Functions that render number buttons
 function handleNumberButtonClick(number) {
   const displayText = storeNumber(number);
@@ -6,22 +8,13 @@ function handleNumberButtonClick(number) {
   display.textContent = displayText.join("");
 }
 
-function createNumberButton(number) {
-  const button = document.createElement("button");
-  button.textContent = number;
-  button.addEventListener("click", () => {
-    handleNumberButtonClick(number)
-  });
-  return button;
-}
-
 function createNumberPadRow(numbers) {
   const numberPad = document.querySelector(".number-pad");
   const row = document.createElement("div");
   row.classList.add("row");
   
   numbers.forEach((number) => {
-    const button = createNumberButton(number);
+    const button = createButton(number, () => handleNumberButtonClick(number));
     row.appendChild(button);
   });
 
@@ -36,23 +29,11 @@ function createNumberPad() {
 }
 
 // Functions that render operator buttons
-const OPERATORS = ["/", "*", "-", "+"];
-
-function createOperatorButton(operator) {
-  const operatorButton = document.createElement("button");
-  operatorButton.textContent = operator;
-  operatorButton.addEventListener("click", () => {
-    setOperator(operator);
-  });
-
-  return operatorButton;
-}
-
 function createOperatorContainer() {
   const operatorContainer = document.querySelector(".operator-container");
   
   for (const operator of OPERATORS) {
-    const button = createOperatorButton(operator);
+    const button = createButton(operator, () => setOperator(operator));
     operatorContainer.appendChild(button);
   }
 
@@ -63,4 +44,12 @@ function createOperatorContainer() {
   });
 
   operatorContainer.appendChild(operateButton);
+}
+
+// Other functions
+function createButton(buttonText, onClick) {
+  const button = document.createElement("button");
+  button.textContent = buttonText;
+  button.addEventListener("click", onClick);
+  return button;
 }
