@@ -26,7 +26,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: end;
-  padding: 0 5%;
+  padding: 0px 5px;
   margin: 0 0 10px 0;
   box-sizing: border-box;
   overflow: hidden;

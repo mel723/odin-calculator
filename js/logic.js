@@ -56,6 +56,9 @@ function operate() {
       break;
   }
 
+  // Round answers to 6 decimal places
+  result = Math.round(result * 1000000) / 1000000;
+
   // Clear number arrays
   number1.splice(0, number1.length);
   number2.splice(0, number2.length);
