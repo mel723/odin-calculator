@@ -53,7 +53,7 @@ function operate() {
   currentOperator = null;
   
   // Display the result
-  const display = document.querySelector("#number-display");
+  const display = document.querySelector("#display");
   display.textContent = result;
   
   // Add the result to the array

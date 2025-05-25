@@ -4,28 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Odin Calculator</title>
-  <style>
-    .container {
-      display: flex;
-      flex: 1;
-      flex-direction: row;
-      align-items: end;
-      gap: 8px;
-    }
-    #number-display {
-      border: 1px solid black;
-      text-align: end;
-    }
-    .row {
-      display: flex;
-      flex: 1;
-      justify-content: center;
-    }
-    .operator-container {
-      display: flex;
-      flex-direction: column;
-    }
-  </style>
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
   <script src="./js/logic.js"></script>
@@ -33,14 +12,12 @@
   <script src="./js/main.js" defer></script>
 
   <div class="container">
-    <div class="left-container">
-      <div id="number-display">
-        0
-      </div>
-      <div class="number-pad">
-      </div>
+    <div id="display">
+      0
     </div>
-    <div class="operator-container">
+    <div class="buttons">
+      <div class="number-pad"></div>
+      <div class="operator-buttons"></div>
     </div>
   </div>
 </body>
