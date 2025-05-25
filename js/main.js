@@ -22,7 +22,3 @@ document.addEventListener("keydown", (e) => {
     operate();
   }
 })
-
-// TODOS:
-// - Repeat operation on result when pressing 
-//   = button after getting result
