@@ -1,20 +1,13 @@
 const OPERATORS = ["/", "*", "-", "+"];
 
 // Functions that render number buttons
-function handleNumberButtonClick(number) {
-  const displayText = storeNumber(number);
-
-  const display = document.querySelector("#display");
-  display.textContent = displayText.join("");
-}
-
 function createNumberPadRow(numbers) {
   const numberPad = document.querySelector(".number-pad");
   const row = document.createElement("div");
   row.classList.add("row");
   
   numbers.forEach((number) => {
-    const button = createButton(number, () => handleNumberButtonClick(number));
+    const button = createButton(number, () => storeNumber(number));
     row.appendChild(button);
   });
 
@@ -40,8 +33,8 @@ function createNumberPad() {
   // 0 and . buttons
   const numberPadRow = document.createElement("div");
   numberPadRow.classList.add("row");
-  const zeroButton = createButton(0, () => handleNumberButtonClick(0), "66.67%");
-  const dotButton = createButton(".", () => handleNumberButtonClick("."));
+  const zeroButton = createButton(0, () => storeNumber(0), "66.67%");
+  const dotButton = createButton(".", () => storeNumber("."));
   numberPadRow.appendChild(zeroButton);
   numberPadRow.appendChild(dotButton);
   numberPad.appendChild(numberPadRow);

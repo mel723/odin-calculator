@@ -31,6 +31,8 @@ function deleteNumber() {
 }
 
 function storeNumber(number) {
+  const display = document.querySelector("#display");
+
   if (currentOperator === null) {
     if (number === "." && number1.includes(".")) {
       return;
@@ -42,6 +44,8 @@ function storeNumber(number) {
     } else {
       number1.push(number);
     }
+
+    display.textContent = number1.join("");
     return number1;
   }
   
@@ -50,6 +54,7 @@ function storeNumber(number) {
   }
 
   number2.push(number);
+  display.textContent = number2.join("");
   return number2;
 }
 
